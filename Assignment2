@@ -1,0 +1,122 @@
+def get_length(dna):
+    """ (str) -> int
+
+    Return the length of the DNA sequence dna.
+
+    >>> get_length('ATCGAT')
+    6
+    >>> get_length('ATCG')
+    4
+    """
+    return len(dna)
+
+def is_longer(dna1, dna2):
+    """ (str, str) -> bool
+
+    Return True if and only if DNA sequence dna1 is longer than DNA sequence
+    dna2.
+
+    >>> is_longer('ATCG', 'AT')
+    True
+    >>> is_longer('ATCG', 'ATCGGA')
+    False
+    """
+    
+    return dna1 > dna2
+
+def count_nucleotides(dna, nucleotide):
+    """ (str, str) -> int
+
+    Return the number of occurrences of nucleotide in the DNA sequence dna.
+
+    >>> count_nucleotides('ATCGGC', 'G')
+    2
+    >>> count_nucleotides('ATCTA', 'G')
+    0
+    """
+    var_nucleo = 0
+    for char in dna:
+        if char in nucleotide:
+            var_nucleo = var_nucleo + 1
+
+    return var_nucleo
+
+def contains_sequence(dna1, dna2):
+    """ (str, str) -> bool
+
+    Return True if and only if DNA sequence dna2 occurs in the DNA sequence
+    dna1.
+
+    >>> contains_sequence('ATCGGC', 'GG')
+    True
+    >>> contains_sequence('ATCGGC', 'GT')
+    False
+
+    """
+    return dna2 in dna1
+
+
+def is_valid_sequence (dna1):
+    ''' (str) -> bool
+    Return True if string if and only if the DNA squence is valid (that is, it ocntains no characters other than 'A', 'T', 'C', and 'G').
+
+    >>> is_valid_sequence ('ATCG')
+    True
+    >>> is_valid_sequence ('aBCDEF')
+    False
+    
+    '''
+
+    nucleo = True
+    for char in dna1:
+        if char in 'ACTG':
+            return True
+        else:
+            return False
+
+
+def insert_sequence(seq1, seq2, index1):
+    ''' (str, str, int) -> str
+    Concantinate seq1 and seq2 based on numerical version of index1
+
+    >>> insert_sequence ('CCGG', 'AT', 2)
+    'CCATGG'
+    >>> insert_sequence ('ATCG', 'AG', 0)
+    'AGATCG'
+
+    '''
+    
+    return seq1[:index1] + seq2 + seq1[index1:]
+
+def get_complement(helix1):
+    ''' (str) -> (str)
+    Returns the compliment of one LETTER of the DNA helix. 
+
+    >>> get_complement ('C')
+    'G'
+    >>> get_complement ('A')
+    'T'
+    '''
+    if helix1 == ('A'):
+        return 'T'
+    elif helix1 == ('T'):
+        return 'A'
+    elif helix1 == ('C'):
+        return 'G'
+    elif helix1 == ('G'):
+        return 'C'
+
+def get_complementary_sequence (helix1):
+    '''
+    Returns the compliment of one SEQUENCE of the DNA helix.
+    >>> get_complementary_sequence ('CAAT')
+    'GTTA'
+    >>> get_complementary_sequence ('AGTG')
+    'TCAC'
+    '''
+    dna = ''
+    for char in helix1:
+        if char in 'ACTG':
+            dna = dna + get_complement(char)
+            
+    return dna
